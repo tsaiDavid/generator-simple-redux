@@ -1,6 +1,7 @@
 {
-  "name": "<%= name =%>",
+  "name": "generator-simple-redux",
   "version": "1.0.0",
+  "description": "My simple redux application.",
   "scripts": {
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
@@ -8,6 +9,11 @@
     "start": "node devServer.js",
     "lint": "eslint src"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsaiDavid/generator-simple-redux.git"
+  },
+  "license": "MIT",
   "homepage": "https://github.com/tsaiDavid/generator-simple-redux",
   "devDependencies": {
     "babel-core": "^6.3.15",
