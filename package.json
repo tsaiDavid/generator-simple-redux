@@ -1,6 +1,6 @@
 {
   "name": "generator-simple-redux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple, yet comprehensive React + Redux application, complete with DevTools.",
   "homepage": "https://github.com/tsaiDavid/generator-simple-redux#readme",
   "author": "David Tsai",
@@ -11,6 +11,7 @@
   "keywords": [
     "react",
     "redux",
+    "transform",
     "generator",
     "yo",
     "yeoman",
