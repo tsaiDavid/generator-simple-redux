@@ -1,40 +1,66 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
+
+let normalizeUrl = require('normalize-url');
+let path = require('path');
+let humanizeUrl = require('humanize-url');
+let yeoman = require('yeoman-generator');
+let mkdirp = require('mkdirp');
+let _s = require('underscore.string');
+
 
 module.exports = yeoman.generators.Base.extend({
-  prompting: function () {
-    var done = this.async();
+	init: function() {
+    var cb = this.async();
 
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the solid ' + chalk.red('generator-simple-redux') + ' generator!'
-    ));
+    this.prompt([{
+			name: 'moduleName',
+			message: 'What do you want to name your app?',
+			default: this.appname.replace(/\s/g, '-'),
+			filter: function(val) {
+				return _s.slugify(val);
+			}
+		}, {
+			name: 'githubUsername',
+			message: 'What is your GitHub username?',
+			store: true,
+			validate: function(val) {
+				return val.length > 0 ? true : 'You have to provide a username';
+			}
+		}, {
+			name: 'website',
+			message: 'What is the URL of your website?',
+			store: true,
+			validate: function(val) {
+        return val.length > 0 ? true : 'You have to provide a website URL';
+			},
+			filter: function(val) {
+        return normalizeUrl(val);
+			}
+		}],
+    function(props) {
+      var asyncCount = 0;
+      this.moduleName = props.moduleName;
+      this.camelModuleName = _s.camelize(props.moduleName);
+      this.githubUsername = props.githubUsername;
+      this.website = props.website;
+      this.humanizedWebsite = humanizeUrl(this.website);
+			this.copy('gitignore', '.gitignore');
+			this.copy('eslintrc', '.eslintrc');
+			this.copy('index.html');
+			this.copy('devServer.js');
+			this.copy('webpack.config.dev.js');
+			this.copy('webpack.config.prod.js');
+			this.copy('README.md');
+			this.template('_package.json', 'package.json');
+      this.copy('babelrc', '.babelrc');
 
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
+      this.directory('src', 'src');
 
-    this.prompt(prompts, function (props) {
-      this.props = props;
-      // To access props later use this.props.someOption;
+      cb();
 
-      done();
     }.bind(this));
-  },
-
-  writing: function () {
-    this.fs.copy(
-      this.templatePath('dummyfile.txt'),
-      this.destinationPath('dummyfile.txt')
-    );
-  },
-
-  install: function () {
-    this.installDependencies();
+	},
+	install: function() {
+    this.installDependencies({ bower: false });
   }
 });
