@@ -1,0 +1,59 @@
+{
+  "name": "generator-simple-redux",
+  "version": "1.0.0",
+  "description": "A simple, yet comprehensive React + Redux application, complete with DevTools.",
+  "homepage": "https://github.com/tsaiDavid/generator-simple-redux#readme",
+  "author": "David Tsai",
+  "files": [
+    "generators"
+  ],
+  "main": "index.js",
+  "keywords": [
+    "react",
+    "redux",
+    "generator",
+    "yo",
+    "yeoman",
+    "webpack",
+    "babel",
+    "es6",
+    "scaffold",
+    "boilerplate",
+    "react-router",
+    "yeoman-generator"
+  ],
+  "scripts": {
+    "test": "gulp",
+    "prepublish": "gulp prepublish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsaiDavid/generator-simple-redux.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tsaiDavid/generator-simple-redux/issues"
+  },
+  "dependencies": {
+    "yeoman-generator": "^0.21.1",
+    "chalk": "^1.0.0",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {
+    "yeoman-assert": "^2.0.0",
+    "eslint-config-xo-space": "^0.7.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.0.0",
+    "gulp-exclude-gitignore": "^1.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.0.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-nsp": "^2.1.0"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "mocha": true
+    }
+  }
+}
